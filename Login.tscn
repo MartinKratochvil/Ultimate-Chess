@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Login.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 1, 0 )
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 397.0
+margin_top = 211.0
+margin_right = 474.0
+margin_bottom = 231.0
+text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -1,0 +1,1121 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://OfflineChess.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Pieces/WhiteBishop.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Pieces/WhiteQueen.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Pieces/WhiteRook.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Pieces/BlackBishop.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Pieces/BlackKing.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Pieces/WhiteKing.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Pieces/BlackPawn.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Pieces/BlackQueen.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Pieces/WhitePawn.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Pieces/OptionEmpty.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Pieces/BlackKnight.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Pieces/OptionFull.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Pieces/WhiteKnight.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Pieces/Select.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Pieces/ChessBoard.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Pieces/BlackRook.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Pieces/Empty.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Pieces/Check.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Pieces/Select-Check.png" type="Texture" id=20]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Rook",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "King",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Bishop",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Queen",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Knight",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Pawn",
+"speed": 0.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Empty",
+"speed": 0.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "Select",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "OptionFull",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "Empty",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "OptionEmpty",
+"speed": 0.0
+} ]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Rook",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "King",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Bishop",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Queen",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Knight",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Pawn",
+"speed": 0.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Empty",
+"speed": 0.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Board" type="Sprite" parent="."]
+position = Vector2( 256, 256 )
+texture = ExtResource( 16 )
+
+[node name="Piece" type="AnimatedSprite" parent="."]
+z_index = 1
+frames = SubResource( 4 )
+animation = "Empty"
+
+[node name="Line1" type="Node2D" parent="."]
+position = Vector2( 0, 448 )
+
+[node name="Area1" type="Area2D" parent="Line1"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line1"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line1"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line1"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line1"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line1"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line1"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line1"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line1/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line1/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line1/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line2" type="Node2D" parent="."]
+position = Vector2( 0, 384 )
+
+[node name="Area1" type="Area2D" parent="Line2"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line2"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line2"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line2"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line2"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line2"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line2"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line2"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line2/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line2/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line3" type="Node2D" parent="."]
+position = Vector2( 0, 320 )
+
+[node name="Area1" type="Area2D" parent="Line3"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line3"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line3"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line3"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line3"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line3"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line3"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line3"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line3/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line3/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line3/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line4" type="Node2D" parent="."]
+position = Vector2( 0, 256 )
+
+[node name="Area1" type="Area2D" parent="Line4"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line4"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line4"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area3"]
+frames = SubResource( 1 )
+animation = "King"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line4"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line4"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area5"]
+frames = SubResource( 1 )
+animation = "Rook"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line4"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line4"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area7"]
+frames = SubResource( 1 )
+animation = "Queen"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line4"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line4/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line4/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line4/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line5" type="Node2D" parent="."]
+position = Vector2( 0, 192 )
+
+[node name="Area1" type="Area2D" parent="Line5"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line5"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line5"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line5"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line5"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line5"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line5"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line5"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line5/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line5/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line5/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line6" type="Node2D" parent="."]
+position = Vector2( 0, 128 )
+
+[node name="Area1" type="Area2D" parent="Line6"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line6"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line6"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line6"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line6"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line6"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line6"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line6"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line6/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line6/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line6/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line7" type="Node2D" parent="."]
+position = Vector2( 0, 64 )
+
+[node name="Area1" type="Area2D" parent="Line7"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line7"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line7"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line7"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line7"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line7"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line7"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line7"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line7/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line7/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line7/Area8"]
+shape = SubResource( 2 )
+
+[node name="Line8" type="Node2D" parent="."]
+
+[node name="Area1" type="Area2D" parent="Line8"]
+position = Vector2( 32, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area1"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area1"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area1"]
+shape = SubResource( 2 )
+
+[node name="Area2" type="Area2D" parent="Line8"]
+position = Vector2( 96, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area2"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area2"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area2"]
+shape = SubResource( 2 )
+
+[node name="Area3" type="Area2D" parent="Line8"]
+position = Vector2( 160, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area3"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area3"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area3"]
+shape = SubResource( 2 )
+
+[node name="Area4" type="Area2D" parent="Line8"]
+position = Vector2( 224, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area4"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area4"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area4"]
+shape = SubResource( 2 )
+
+[node name="Area5" type="Area2D" parent="Line8"]
+position = Vector2( 288, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area5"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area5"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area5"]
+shape = SubResource( 2 )
+
+[node name="Area6" type="Area2D" parent="Line8"]
+position = Vector2( 352, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area6"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area6"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area6"]
+shape = SubResource( 2 )
+
+[node name="Area7" type="Area2D" parent="Line8"]
+position = Vector2( 416, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area7"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area7"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area7"]
+shape = SubResource( 2 )
+
+[node name="Area8" type="Area2D" parent="Line8"]
+position = Vector2( 480, 32 )
+
+[node name="Overlay" type="AnimatedSprite" parent="Line8/Area8"]
+frames = SubResource( 3 )
+animation = "Empty"
+
+[node name="Piece" type="AnimatedSprite" parent="Line8/Area8"]
+frames = SubResource( 1 )
+animation = "Empty"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line8/Area8"]
+shape = SubResource( 2 )
+
+[connection signal="input_event" from="Line1/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line1/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line2/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line3/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line4/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line5/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line6/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line7/Area8" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area1" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area2" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area3" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area4" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area5" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area6" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area7" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="Line8/Area8" to="." method="_on_Area_input_event"]
